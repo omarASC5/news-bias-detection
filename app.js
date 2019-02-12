@@ -1,7 +1,10 @@
 const app     = require("express")(),
 	  newsAPI = require("newsapi"),
+	  ejs     = require("ejs"),
 	  keys    = require("./config/keys.js"),
 	  newsapi = new newsAPI(keys.NEWS_API.KEY);
+
+app.set("view engine", "ejs");
 
 app.get("/", (req, res, next) => {
 	res.send("Hi");
@@ -18,11 +21,16 @@ newsapi.v2.everything({
 	language: 'en',
 	sortBy: 'relevancy'
   }).then(response => {
-	console.log(response);
+	  app.get("/y", (req, res, next) => {
+		res.render("index", 
+		{
+			response: response
+		});
+	  });
 	
 	
   });
 
 app.listen(keys.PORT, () => {
-	console.log("Server running!");
+	console.log(`Server running on port ${keys.PORT}!`);
 });
