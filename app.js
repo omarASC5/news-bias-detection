@@ -6,29 +6,30 @@ const app     = require("express")(),
 
 app.set("view engine", "ejs");
 
-app.get("/", (req, res, next) => {
-	res.send("Hi");
-});
 
+function GetFormattedDate() {
+    var todayTime = new Date();
+    var month = format(todayTime .getMonth() + 1);
+    var day = format(todayTime .getDate());
+    var year = format(todayTime .getFullYear());
+    return month + "/" + day + "/" + year;
+}
 // To query /v2/everything
 // You must include at least one q, source, or domain
 newsapi.v2.everything({
-	q: 'bitcoin',
-	sources: 'bbc-news,the-verge',
-	domains: 'bbc.co.uk, techcrunch.com',
+	sources: 'nytimes',
+	domains: 'nytimes.com',
 	from: '2019-01-12', // YYYY/MM/DD
 	to: '2019-02-01',
 	language: 'en',
 	sortBy: 'relevancy'
   }).then(response => {
-	  app.get("/y", (req, res, next) => {
+	  app.get("/", (req, res, next) => {
 		res.render("index", 
 		{
 			response: response
 		});
 	  });
-	
-	
   });
 
 app.listen(keys.PORT, () => {
