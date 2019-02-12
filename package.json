@@ -1,0 +1,23 @@
+{
+  "name": "news-bias-detection",
+  "version": "1.0.0",
+  "description": "A website that detects the bias of news articles by using natural language processing and neural networks.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/omarASC5/news-bias-detection.git"
+  },
+  "author": "Omar Cobas and Denzell Dixon",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/omarASC5/news-bias-detection/issues"
+  },
+  "homepage": "https://github.com/omarASC5/news-bias-detection#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "newsapi": "^2.4.0"
+  }
+}
