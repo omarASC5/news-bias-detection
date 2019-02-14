@@ -1,10 +1,12 @@
-const app     = require("express")(),
+const express = require("express"),
+		app = express(),
 	  newsAPI = require("newsapi"),
 	  ejs     = require("ejs"),
 	  keys    = require("./config/keys.js"),
 	  newsapi = new newsAPI(keys.NEWS_API.KEY);
 
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + '/public'));
 
 
 function GetFormattedDate() {
@@ -19,7 +21,7 @@ function GetFormattedDate() {
 newsapi.v2.everything({
 	sources: 'nytimes',
 	domains: 'nytimes.com',
-	from: '2019-01-12', // YYYY/MM/DD
+	from: '2019-01-16', // YYYY/MM/DD
 	to: '2019-02-01',
 	language: 'en',
 	sortBy: 'relevancy'
