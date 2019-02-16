@@ -5,6 +5,7 @@ const express = require("express"),
 		keys    = require("./config/keys.js"),
 		compromise = require("compromise"),
 		brain = require("brain.js"),
+		sourcesDataFile = require("./sources.json"),
 		newsapi = new newsAPI(keys.NEWS_API.KEY);
 
 app.set("view engine", "ejs");
@@ -14,18 +15,28 @@ app.use(express.static(__dirname + '/public'));
 // doc.nouns().toPlural();
 // console.log(doc.out('text'));
 
-const network = new brain.NeuralNetwork();
-network.train([
-	{ input: [0, 0, 0], output: [0] },
-	{ input: [0, 0, 1], output: [0] },
-	{ input: [0, 1, 1], output: [0] },
-	{ input: [1, 0, 1], output: [1] },
-	{ input: [1, 1, 1], output: [1] }
-]);
+// const network = new brain.NeuralNetwork();
+// network.train([
+// 	{ input: [0, 0, 0], output: [0] },
+// 	{ input: [0, 0, 1], output: [0] },
+// 	{ input: [0, 1, 1], output: [0] },
+// 	{ input: [1, 0, 1], output: [1] },
+// 	{ input: [1, 1, 1], output: [1] }
+// ]);
 
-const output = network.run([0, 0, 1]);
+// const output = network.run([0, 0, 1]);
+const network = new brain.recurrent.LSTM();
+// const trainingData = sourcesDataFile.map(item => {
+// 	item["2nd type"]
+// });
 
-console.log(`Probability: ${output}`);
+// network.train(data, {
+// 	iterations: 2000
+// });
+
+// const output = network.run("nytimes.com");
+const data = JSON.parse(sourcesDataFile);
+console.log(`News Source: ${data}`);
 
 // To query /v2/everything
 // You must include at least one q, source, or domain
