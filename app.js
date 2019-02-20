@@ -21,8 +21,8 @@ function GetFormattedDate() {
 newsapi.v2.everything({
 	sources: 'nytimes',
 	domains: 'nytimes.com',
-	from: '2019-01-16', // YYYY/MM/DD
-	to: '2019-02-01',
+	from: '2019-02-08', // YYYY/MM/DD
+	to: '2019-02-15',
 	language: 'en',
 	sortBy: 'relevancy'
   }).then(response => {
