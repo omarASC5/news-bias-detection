@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/omarASC5/news-bias-detection#readme",
   "dependencies": {
+<<<<<<< HEAD
+=======
+    "brain.js": "^1.6.1",
+>>>>>>> 92f53bf0297b802e476e017c31666e1d217ffb8f
     "compromise": "^11.13.1",
     "ejs": "^2.6.1",
     "express": "^4.16.4",

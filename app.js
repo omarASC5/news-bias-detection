@@ -1,21 +1,43 @@
 const express = require("express"),
 		app = express(),
 	  newsAPI = require("newsapi"),
-	  ejs     = require("ejs"),
-	  keys    = require("./config/keys.js"),
-	  newsapi = new newsAPI(keys.NEWS_API.KEY);
+		ejs     = require("ejs"),
+		keys    = require("./config/keys.js"),
+		compromise = require("compromise"),
+		brain = require("brain.js"),
+		sourcesDataFile = require("./sources.json"),
+		newsapi = new newsAPI(keys.NEWS_API.KEY);
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + '/public'));
 
+// const doc = nlp('dinosaur');
+// doc.nouns().toPlural();
+// console.log(doc.out('text'));
 
-function GetFormattedDate() {
-    var todayTime = new Date();
-    var month = format(todayTime .getMonth() + 1);
-    var day = format(todayTime .getDate());
-    var year = format(todayTime .getFullYear());
-    return month + "/" + day + "/" + year;
-}
+// const network = new brain.NeuralNetwork();
+// network.train([
+// 	{ input: [0, 0, 0], output: [0] },
+// 	{ input: [0, 0, 1], output: [0] },
+// 	{ input: [0, 1, 1], output: [0] },
+// 	{ input: [1, 0, 1], output: [1] },
+// 	{ input: [1, 1, 1], output: [1] }
+// ]);
+
+// const output = network.run([0, 0, 1]);
+const network = new brain.recurrent.LSTM();
+// const trainingData = sourcesDataFile.map(item => {
+// 	item["2nd type"]
+// });
+
+// network.train(data, {
+// 	iterations: 2000
+// });
+
+// const output = network.run("nytimes.com");
+const data = JSON.parse(sourcesDataFile);
+console.log(`News Source: ${data}`);
+
 // To query /v2/everything
 // You must include at least one q, source, or domain
 newsapi.v2.everything({
